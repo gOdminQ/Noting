@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- Customize your color here. -->
+    <color name="background_color_light">#F7FFED</color>
+    <color name="background_color_dark">#272E1E</color> <!-- 나중에 다크모드 추가 -->
+    <color name="button_add_memo">#D5FF9C</color>
+    <color name="button_go_back">#D5FF9C</color>
+
+
+</resources>
