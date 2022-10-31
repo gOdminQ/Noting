@@ -13,5 +13,11 @@
     <color name="button_add_memo">#D5FF9C</color>
     <color name="button_go_back">#D5FF9C</color>
 
+    <color name="button_save_add_memo">#D5FF9C</color>
+
+    <color name="text_color_for_background_color_light">#000000</color>
+
+
+
 
 </resources>

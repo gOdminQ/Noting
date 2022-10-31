@@ -1,0 +1,10 @@
+TODO_LIST
+
+- room 데이터 베이스 적용
+    DAO
+
+- MVVM 디자인 패턴 적용
+    viewModel, dataBinding
+
+- 인터페이스 활용
+

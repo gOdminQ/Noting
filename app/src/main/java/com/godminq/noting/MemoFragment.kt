@@ -5,56 +5,66 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.godminq.noting.databinding.FragmentMemoBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MemoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+// editTextTextPersonName 클릭시 minline = 3 되도록 하기
 
 class MemoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var binding: FragmentMemoBinding
+
+    var helper: RoomHelper? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_memo, container, false)
+        binding = FragmentMemoBinding.inflate(inflater, container, false)
+        return binding.root
     }
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MemoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MemoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+
+        super.onViewCreated(view, savedInstanceState)
+
+        helper = Room.databaseBuilder(requireContext(), RoomHelper::class.java, "room_memo")
+            .addMigrations(MigrateDatabase.MIGRATE_1_2)
+            .allowMainThreadQueries()
+            .build()
+
+        val adapter = RecyclerAdapter()
+        adapter.helper = helper
+
+        adapter.listData.addAll(helper?.roomMemoDao()?.getAll()?: listOf())
+        binding.recyclerMemo.adapter = adapter
+        binding.recyclerMemo.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.buttonSave.setOnClickListener {
+            if (binding.editMemo.text.toString().isNotEmpty()) {
+                val memo = RoomMemo(binding.editMemo.text.toString(), System.currentTimeMillis())
+                helper?.roomMemoDao()?.insert(memo)
+                adapter.listData.clear()
+                adapter.listData.addAll(helper?.roomMemoDao()?.getAll() ?: listOf())
+
+                adapter.notifyDataSetChanged()
+                binding.editMemo.setText("")
             }
+        }
+
+    }
+}
+object MigrateDatabase {
+    val MIGRATE_1_2 = object : Migration(1, 2) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            val alter = "ALTER table room_memo add column new_title text"
+            database.execSQL(alter)
+        }
     }
 }
 

@@ -39,12 +39,13 @@
           android:text="@string/tab_layout_my_info" />
    </com.google.android.material.tabs.TabLayout>
 
-   <androidx.appcompat.widget.AppCompatButton
+   <Button
        android:id="@+id/btnAddMemo"
        android:layout_width="60dp"
        android:layout_height="60dp"
        android:layout_marginBottom="40dp"
        android:background="@drawable/buttonshape"
+       android:defaultFocusHighlightEnabled="false"
        android:elevation="1dp"
        android:soundEffectsEnabled="true"
        android:stateListAnimator="@null"
@@ -62,7 +63,9 @@
        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent" />
+       app:layout_constraintTop_toTopOf="parent">
+
+   </androidx.viewpager2.widget.ViewPager2>
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:id="@+id/addMemoConsLayout"

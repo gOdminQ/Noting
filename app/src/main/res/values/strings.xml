@@ -6,17 +6,29 @@
     <string name="hello_calendar_fragment">calendar</string>
     <string name="hello_my_info_fragment">my info</string>
 
+    <!-- 탭 레이아웃 -->
     <string name="tab_layout_memo">메모</string>
     <string name="tab_layout_category">카테고리</string>
     <string name="tab_layout_calendar">캘린더</string>
     <string name="tab_layout_my_info">내 정보</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="floating_action_button_description">메모추가</string>
+
+    <!-- MemoFragment -->
+    <string name="memo_fragment_title">Noting!</string>
+    <string name="memo_typing_space_hint_for_memo_fragment">메모를 입력해주세요!</string>
+    <string name="saving_button_for_memo_fragment">저장</string>
+
+    <!-- item_recycler -->
+    <string name="delete_button_for_item_recycler">삭제</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="btnGoBack">Back</string>
     <string name="btnAddMemoInnerContent">+</string>
+
+
 
 
 
