@@ -37,7 +37,6 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.Holder>() {
             val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm")
             // 날짜 포맷은 SimpleDateFormat으로 설정합니다.
             binding.textDateTime.text = "${sdf.format(memo.datetime)}"
-
             this.mRoomMemo = memo
         }
     }

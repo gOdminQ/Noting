@@ -29,8 +29,6 @@ class MemoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
-
         super.onViewCreated(view, savedInstanceState)
 
         helper = Room.databaseBuilder(requireContext(), RoomHelper::class.java, "room_memo")
@@ -54,6 +52,7 @@ class MemoFragment : Fragment() {
 
                 adapter.notifyDataSetChanged()
                 binding.editMemo.setText("")
+                (activity as MainActivity).hideKeyboard()
             }
         }
 
